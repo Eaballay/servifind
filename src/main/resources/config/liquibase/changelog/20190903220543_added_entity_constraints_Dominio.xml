@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Dominio.
+    -->
+    <changeSet id="20190903220543-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="proyecto_id"
+                                 baseTableName="dominio"
+                                 constraintName="fk_dominio_proyecto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proyecto"/>
+
+        <addForeignKeyConstraint baseColumnNames="orden_de_trabajo_id"
+                                 baseTableName="dominio"
+                                 constraintName="fk_dominio_orden_de_trabajo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="orden_de_trabajo"/>
+
+    </changeSet>
+</databaseChangeLog>

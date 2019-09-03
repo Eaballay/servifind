@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span>Presupuestos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-presupuesto" [routerLink]="['/presupuesto/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Presupuesto
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="presupuestos?.length === 0">
+        <span>No presupuestos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="presupuestos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Fecha De Creacion</span></th>
+            <th><span>Fecha De Vencimiento</span></th>
+            <th><span>Empleado</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let presupuesto of presupuestos ;trackBy: trackId">
+                <td><a [routerLink]="['/presupuesto', presupuesto.id, 'view' ]">{{presupuesto.id}}</a></td>
+                <td>{{presupuesto.fechaDeCreacion | date:'medium'}}</td>
+                <td>{{presupuesto.fechaDeVencimiento | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="presupuesto.empleado">
+                        <a [routerLink]="['/empleado', presupuesto.empleado?.id, 'view' ]" >{{presupuesto.empleado?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/presupuesto', presupuesto.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/presupuesto', presupuesto.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/presupuesto', { outlets: { popup: presupuesto.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

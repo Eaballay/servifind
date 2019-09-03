@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="detalleDeOrdenDeCompra">
+            <h2><span>Detalle De Orden De Compra</span> {{detalleDeOrdenDeCompra.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cantidad</span></dt>
+                <dd>
+                    <span>{{detalleDeOrdenDeCompra.cantidad}}</span>
+                </dd>
+                <dt><span>Descripcion</span></dt>
+                <dd>
+                    <span>{{detalleDeOrdenDeCompra.descripcion}}</span>
+                </dd>
+                <dt><span>Orden De Compra</span></dt>
+                <dd>
+                    <div *ngIf="detalleDeOrdenDeCompra.ordenDeCompra">
+                        <a [routerLink]="['/orden-de-compra', detalleDeOrdenDeCompra.ordenDeCompra?.id, 'view']">{{detalleDeOrdenDeCompra.ordenDeCompra?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Unidad</span></dt>
+                <dd>
+                    <div *ngIf="detalleDeOrdenDeCompra.unidad">
+                        <a [routerLink]="['/dominio', detalleDeOrdenDeCompra.unidad?.id, 'view']">{{detalleDeOrdenDeCompra.unidad?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/detalle-de-orden-de-compra', detalleDeOrdenDeCompra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

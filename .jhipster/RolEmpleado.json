@@ -1,0 +1,31 @@
+{
+    "name": "RolEmpleado",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "empleado",
+            "otherEntityRelationshipName": "rolEmpleado",
+            "relationshipName": "empleado",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "rolEmpleado",
+            "relationshipName": "rol",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190903220546",
+    "entityTableName": "rol_empleado",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

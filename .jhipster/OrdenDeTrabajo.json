@@ -1,0 +1,57 @@
+{
+    "name": "OrdenDeTrabajo",
+    "fields": [
+        {
+            "fieldName": "fechaDeRealizacion",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "horasEstimadas",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "proyecto",
+            "otherEntityRelationshipName": "ordenDeTrabajo",
+            "relationshipName": "proyecto",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "asociado",
+            "otherEntityRelationshipName": "ordenDeTrabajo",
+            "relationshipName": "asociado",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "ordenDeTrabajo",
+            "relationshipName": "estado",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190903220553",
+    "entityTableName": "orden_de_trabajo",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

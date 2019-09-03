@@ -1,0 +1,77 @@
+<div>
+    <h2 id="page-heading">
+        <span>Orden De Compras</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-orden-de-compra" [routerLink]="['/orden-de-compra/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Orden De Compra
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="ordenDeCompras?.length === 0">
+        <span>No ordenDeCompras found</span>
+    </div>
+    <div class="table-responsive" *ngIf="ordenDeCompras?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Nro Orden De Compra</span></th>
+            <th><span>Fecha De Creacion</span></th>
+            <th><span>Presupuesto</span></th>
+            <th><span>Empleado</span></th>
+            <th><span>Estado</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ordenDeCompra of ordenDeCompras ;trackBy: trackId">
+                <td><a [routerLink]="['/orden-de-compra', ordenDeCompra.id, 'view' ]">{{ordenDeCompra.id}}</a></td>
+                <td>{{ordenDeCompra.nroOrdenDeCompra}}</td>
+                <td>{{ordenDeCompra.fechaDeCreacion | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="ordenDeCompra.presupuesto">
+                        <a [routerLink]="['/presupuesto', ordenDeCompra.presupuesto?.id, 'view' ]" >{{ordenDeCompra.presupuesto?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ordenDeCompra.empleado">
+                        <a [routerLink]="['/empleado', ordenDeCompra.empleado?.id, 'view' ]" >{{ordenDeCompra.empleado?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ordenDeCompra.estado">
+                        <a [routerLink]="['/dominio', ordenDeCompra.estado?.id, 'view' ]" >{{ordenDeCompra.estado?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/orden-de-compra', ordenDeCompra.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/orden-de-compra', ordenDeCompra.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/orden-de-compra', { outlets: { popup: ordenDeCompra.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="rolEmpleado">
+            <h2><span>Rol Empleado</span> {{rolEmpleado.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Empleado</span></dt>
+                <dd>
+                    <div *ngIf="rolEmpleado.empleado">
+                        <a [routerLink]="['/empleado', rolEmpleado.empleado?.id, 'view']">{{rolEmpleado.empleado?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Rol</span></dt>
+                <dd>
+                    <div *ngIf="rolEmpleado.rol">
+                        <a [routerLink]="['/dominio', rolEmpleado.rol?.id, 'view']">{{rolEmpleado.rol?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/rol-empleado', rolEmpleado.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

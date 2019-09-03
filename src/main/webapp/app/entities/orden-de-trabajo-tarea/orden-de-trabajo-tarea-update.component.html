@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-orden-de-trabajo-tarea-heading">Create or edit a Orden De Trabajo Tarea</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_cantidad">Cantidad</label>
+                    <input type="number" class="form-control" name="cantidad" id="field_cantidad"
+                           formControlName="cantidad"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_precioPorUnidad">Precio Por Unidad</label>
+                    <input type="text" class="form-control" name="precioPorUnidad" id="field_precioPorUnidad"
+                           formControlName="precioPorUnidad"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                           formControlName="descripcion"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ordenDeTrabajo">Orden De Trabajo</label>
+                    <select class="form-control" id="field_ordenDeTrabajo" name="ordenDeTrabajo" formControlName="ordenDeTrabajo">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="ordenDeTrabajoOption.id === editForm.get('ordenDeTrabajo').value?.id ? editForm.get('ordenDeTrabajo').value : ordenDeTrabajoOption" *ngFor="let ordenDeTrabajoOption of ordendetrabajos; trackBy: trackOrdenDeTrabajoById">{{ordenDeTrabajoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_unidad">Unidad</label>
+                    <select class="form-control" id="field_unidad" name="unidad" formControlName="unidad">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dominioOption.id === editForm.get('unidad').value?.id ? editForm.get('unidad').value : dominioOption" *ngFor="let dominioOption of unidads; trackBy: trackDominioById">{{dominioOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

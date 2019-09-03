@@ -1,0 +1,31 @@
+{
+    "name": "AsociadoTarea",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "asociado",
+            "otherEntityRelationshipName": "asociadoTarea",
+            "relationshipName": "asociado",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "tarea",
+            "otherEntityRelationshipName": "asociadoTarea",
+            "relationshipName": "tarea",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190903220548",
+    "entityTableName": "asociado_tarea",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

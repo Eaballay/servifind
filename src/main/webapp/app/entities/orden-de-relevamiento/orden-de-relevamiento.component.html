@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Orden De Relevamientos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-orden-de-relevamiento" [routerLink]="['/orden-de-relevamiento/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Orden De Relevamiento
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="ordenDeRelevamientos?.length === 0">
+        <span>No ordenDeRelevamientos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="ordenDeRelevamientos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Comentario</span></th>
+            <th><span>Fecha</span></th>
+            <th><span>Hora</span></th>
+            <th><span>Proyecto</span></th>
+            <th><span>Estado</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ordenDeRelevamiento of ordenDeRelevamientos ;trackBy: trackId">
+                <td><a [routerLink]="['/orden-de-relevamiento', ordenDeRelevamiento.id, 'view' ]">{{ordenDeRelevamiento.id}}</a></td>
+                <td>{{ordenDeRelevamiento.comentario}}</td>
+                <td>{{ordenDeRelevamiento.fecha | date:'medium'}}</td>
+                <td>{{ordenDeRelevamiento.hora | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="ordenDeRelevamiento.proyecto">
+                        <a [routerLink]="['/proyecto', ordenDeRelevamiento.proyecto?.id, 'view' ]" >{{ordenDeRelevamiento.proyecto?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="ordenDeRelevamiento.estado">
+                        <a [routerLink]="['/dominio', ordenDeRelevamiento.estado?.id, 'view' ]" >{{ordenDeRelevamiento.estado?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/orden-de-relevamiento', ordenDeRelevamiento.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/orden-de-relevamiento', ordenDeRelevamiento.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/orden-de-relevamiento', { outlets: { popup: ordenDeRelevamiento.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

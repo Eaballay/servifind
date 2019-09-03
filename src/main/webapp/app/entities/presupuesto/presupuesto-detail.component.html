@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="presupuesto">
+            <h2><span>Presupuesto</span> {{presupuesto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Fecha De Creacion</span></dt>
+                <dd>
+                    <span>{{presupuesto.fechaDeCreacion}}</span>
+                </dd>
+                <dt><span>Fecha De Vencimiento</span></dt>
+                <dd>
+                    <span>{{presupuesto.fechaDeVencimiento}}</span>
+                </dd>
+                <dt><span>Empleado</span></dt>
+                <dd>
+                    <div *ngIf="presupuesto.empleado">
+                        <a [routerLink]="['/empleado', presupuesto.empleado?.id, 'view']">{{presupuesto.empleado?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/presupuesto', presupuesto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

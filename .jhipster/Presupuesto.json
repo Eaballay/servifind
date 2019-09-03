@@ -1,0 +1,37 @@
+{
+    "name": "Presupuesto",
+    "fields": [
+        {
+            "fieldName": "fechaDeCreacion",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaDeVencimiento",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "empleado",
+            "otherEntityRelationshipName": "presupuesto",
+            "relationshipName": "empleado",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190903220550",
+    "entityTableName": "presupuesto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

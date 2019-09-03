@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ordenDeRelevamiento">
+            <h2><span>Orden De Relevamiento</span> {{ordenDeRelevamiento.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Comentario</span></dt>
+                <dd>
+                    <span>{{ordenDeRelevamiento.comentario}}</span>
+                </dd>
+                <dt><span>Fecha</span></dt>
+                <dd>
+                    <span>{{ordenDeRelevamiento.fecha}}</span>
+                </dd>
+                <dt><span>Hora</span></dt>
+                <dd>
+                    <span>{{ordenDeRelevamiento.hora}}</span>
+                </dd>
+                <dt><span>Proyecto</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeRelevamiento.proyecto">
+                        <a [routerLink]="['/proyecto', ordenDeRelevamiento.proyecto?.id, 'view']">{{ordenDeRelevamiento.proyecto?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Estado</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeRelevamiento.estado">
+                        <a [routerLink]="['/dominio', ordenDeRelevamiento.estado?.id, 'view']">{{ordenDeRelevamiento.estado?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/orden-de-relevamiento', ordenDeRelevamiento.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

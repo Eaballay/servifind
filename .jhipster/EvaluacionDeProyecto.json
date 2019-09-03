@@ -1,0 +1,36 @@
+{
+    "name": "EvaluacionDeProyecto",
+    "fields": [
+        {
+            "fieldName": "comentario",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "calificacion",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "fechaDeCreacion",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "proyecto",
+            "otherEntityRelationshipName": "evaluacionDeProyecto",
+            "relationshipName": "proyecto",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190903220559",
+    "entityTableName": "evaluacion_de_proyecto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

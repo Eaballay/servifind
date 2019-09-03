@@ -1,0 +1,37 @@
+{
+    "name": "Empleado",
+    "fields": [
+        {
+            "fieldName": "fechaDeContratacion",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nroDeLegajo",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "persona",
+            "otherEntityRelationshipName": "empleado",
+            "relationshipName": "persona",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190903220545",
+    "entityTableName": "empleado",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

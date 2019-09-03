@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="dominio">
+            <h2><span>Dominio</span> {{dominio.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Valor</span></dt>
+                <dd>
+                    <span>{{dominio.valor}}</span>
+                </dd>
+                <dt><span>Etiqueta</span></dt>
+                <dd>
+                    <span>{{dominio.etiqueta}}</span>
+                </dd>
+                <dt><span>Descripcion</span></dt>
+                <dd>
+                    <span>{{dominio.descripcion}}</span>
+                </dd>
+                <dt><span>Tipo De Dominio</span></dt>
+                <dd>
+                    <span>{{dominio.tipoDeDominio}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/dominio', dominio.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-presupuesto-heading">Create or edit a Presupuesto</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fechaDeCreacion">Fecha De Creacion</label>
+                    <div class="d-flex">
+                        <input id="field_fechaDeCreacion" type="datetime-local" class="form-control" name="fechaDeCreacion" formControlName="fechaDeCreacion" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('fechaDeCreacion').invalid && (editForm.get('fechaDeCreacion').dirty || editForm.get('fechaDeCreacion').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fechaDeCreacion').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('fechaDeCreacion').errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_fechaDeVencimiento">Fecha De Vencimiento</label>
+                    <div class="d-flex">
+                        <input id="field_fechaDeVencimiento" type="datetime-local" class="form-control" name="fechaDeVencimiento" formControlName="fechaDeVencimiento" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('fechaDeVencimiento').invalid && (editForm.get('fechaDeVencimiento').dirty || editForm.get('fechaDeVencimiento').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('fechaDeVencimiento').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('fechaDeVencimiento').errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_empleado">Empleado</label>
+                    <select class="form-control" id="field_empleado" name="empleado" formControlName="empleado">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="empleadoOption.id === editForm.get('empleado').value?.id ? editForm.get('empleado').value : empleadoOption" *ngFor="let empleadoOption of empleados; trackBy: trackEmpleadoById">{{empleadoOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

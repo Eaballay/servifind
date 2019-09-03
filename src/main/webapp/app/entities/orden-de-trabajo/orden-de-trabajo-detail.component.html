@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ordenDeTrabajo">
+            <h2><span>Orden De Trabajo</span> {{ordenDeTrabajo.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Fecha De Realizacion</span></dt>
+                <dd>
+                    <span>{{ordenDeTrabajo.fechaDeRealizacion}}</span>
+                </dd>
+                <dt><span>Horas Estimadas</span></dt>
+                <dd>
+                    <span>{{ordenDeTrabajo.horasEstimadas}}</span>
+                </dd>
+                <dt><span>Descripcion</span></dt>
+                <dd>
+                    <span>{{ordenDeTrabajo.descripcion}}</span>
+                </dd>
+                <dt><span>Proyecto</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeTrabajo.proyecto">
+                        <a [routerLink]="['/proyecto', ordenDeTrabajo.proyecto?.id, 'view']">{{ordenDeTrabajo.proyecto?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Asociado</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeTrabajo.asociado">
+                        <a [routerLink]="['/asociado', ordenDeTrabajo.asociado?.id, 'view']">{{ordenDeTrabajo.asociado?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Estado</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeTrabajo.estado">
+                        <a [routerLink]="['/dominio', ordenDeTrabajo.estado?.id, 'view']">{{ordenDeTrabajo.estado?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/orden-de-trabajo', ordenDeTrabajo.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

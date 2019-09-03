@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span>Rol Empleados</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-rol-empleado" [routerLink]="['/rol-empleado/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Rol Empleado
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="rolEmpleados?.length === 0">
+        <span>No rolEmpleados found</span>
+    </div>
+    <div class="table-responsive" *ngIf="rolEmpleados?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Empleado</span></th>
+            <th><span>Rol</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rolEmpleado of rolEmpleados ;trackBy: trackId">
+                <td><a [routerLink]="['/rol-empleado', rolEmpleado.id, 'view' ]">{{rolEmpleado.id}}</a></td>
+                <td>
+                    <div *ngIf="rolEmpleado.empleado">
+                        <a [routerLink]="['/empleado', rolEmpleado.empleado?.id, 'view' ]" >{{rolEmpleado.empleado?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="rolEmpleado.rol">
+                        <a [routerLink]="['/dominio', rolEmpleado.rol?.id, 'view' ]" >{{rolEmpleado.rol?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/rol-empleado', rolEmpleado.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/rol-empleado', rolEmpleado.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/rol-empleado', { outlets: { popup: rolEmpleado.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+{
+    "name": "DetalleDeOrdenDeCompra",
+    "fields": [
+        {
+            "fieldName": "cantidad",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "ordenDeCompra",
+            "otherEntityRelationshipName": "detalleDeOrdenDeCompra",
+            "relationshipName": "ordenDeCompra",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "detalleDeOrdenDeCompra",
+            "relationshipName": "unidad",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190903220557",
+    "entityTableName": "detalle_de_orden_de_compra",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,61 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="tarea">
+            <h2><span>Tarea</span> {{tarea.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nombre</span></dt>
+                <dd>
+                    <span>{{tarea.nombre}}</span>
+                </dd>
+                <dt><span>Descripcion</span></dt>
+                <dd>
+                    <span>{{tarea.descripcion}}</span>
+                </dd>
+                <dt><span>Precio Por Unidad</span></dt>
+                <dd>
+                    <span>{{tarea.precioPorUnidad}}</span>
+                </dd>
+                <dt><span>Fecha De Creacion</span></dt>
+                <dd>
+                    <span>{{tarea.fechaDeCreacion}}</span>
+                </dd>
+                <dt><span>Fecha De Modificacion</span></dt>
+                <dd>
+                    <span>{{tarea.fechaDeModificacion}}</span>
+                </dd>
+                <dt><span>Actividad</span></dt>
+                <dd>
+                    <div *ngIf="tarea.actividad">
+                        <a [routerLink]="['/dominio', tarea.actividad?.id, 'view']">{{tarea.actividad?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Unidad</span></dt>
+                <dd>
+                    <div *ngIf="tarea.unidad">
+                        <a [routerLink]="['/dominio', tarea.unidad?.id, 'view']">{{tarea.unidad?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Estado</span></dt>
+                <dd>
+                    <div *ngIf="tarea.estado">
+                        <a [routerLink]="['/dominio', tarea.estado?.id, 'view']">{{tarea.estado?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/tarea', tarea.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

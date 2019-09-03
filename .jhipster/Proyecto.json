@@ -1,0 +1,66 @@
+{
+    "name": "Proyecto",
+    "fields": [
+        {
+            "fieldName": "nroDeProyecto",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descripcion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "direccion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaDeInicio",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaDeFinalizacion",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fechaDeCreacion",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "cliente",
+            "otherEntityRelationshipName": "proyecto",
+            "relationshipName": "cliente",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "proyecto",
+            "relationshipName": "estado",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190903220552",
+    "entityTableName": "proyecto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -43,6 +43,31 @@ public class CacheConfiguration {
             createCache(cm, com.tesis.servifind.domain.User.class.getName());
             createCache(cm, com.tesis.servifind.domain.Authority.class.getName());
             createCache(cm, com.tesis.servifind.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.tesis.servifind.domain.Dominio.class.getName());
+            createCache(cm, com.tesis.servifind.domain.Persona.class.getName());
+            createCache(cm, com.tesis.servifind.domain.Empleado.class.getName());
+            createCache(cm, com.tesis.servifind.domain.RolEmpleado.class.getName());
+            createCache(cm, com.tesis.servifind.domain.RolEmpleado.class.getName() + ".empleados");
+            createCache(cm, com.tesis.servifind.domain.RolEmpleado.class.getName() + ".rols");
+            createCache(cm, com.tesis.servifind.domain.Asociado.class.getName());
+            createCache(cm, com.tesis.servifind.domain.AsociadoTarea.class.getName());
+            createCache(cm, com.tesis.servifind.domain.AsociadoTarea.class.getName() + ".asociados");
+            createCache(cm, com.tesis.servifind.domain.AsociadoTarea.class.getName() + ".tareas");
+            createCache(cm, com.tesis.servifind.domain.Cliente.class.getName());
+            createCache(cm, com.tesis.servifind.domain.Presupuesto.class.getName());
+            createCache(cm, com.tesis.servifind.domain.Presupuesto.class.getName() + ".empleados");
+            createCache(cm, com.tesis.servifind.domain.DetalleDePresupuesto.class.getName());
+            createCache(cm, com.tesis.servifind.domain.Proyecto.class.getName());
+            createCache(cm, com.tesis.servifind.domain.Proyecto.class.getName() + ".clientes");
+            createCache(cm, com.tesis.servifind.domain.Proyecto.class.getName() + ".estados");
+            createCache(cm, com.tesis.servifind.domain.OrdenDeTrabajo.class.getName());
+            createCache(cm, com.tesis.servifind.domain.OrdenDeTrabajo.class.getName() + ".estados");
+            createCache(cm, com.tesis.servifind.domain.OrdenDeTrabajoTarea.class.getName());
+            createCache(cm, com.tesis.servifind.domain.Tarea.class.getName());
+            createCache(cm, com.tesis.servifind.domain.OrdenDeCompra.class.getName());
+            createCache(cm, com.tesis.servifind.domain.DetalleDeOrdenDeCompra.class.getName());
+            createCache(cm, com.tesis.servifind.domain.OrdenDeRelevamiento.class.getName());
+            createCache(cm, com.tesis.servifind.domain.EvaluacionDeProyecto.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

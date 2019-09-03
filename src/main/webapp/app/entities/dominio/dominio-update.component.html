@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-dominio-heading">Create or edit a Dominio</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_valor">Valor</label>
+                    <input type="text" class="form-control" name="valor" id="field_valor"
+                           formControlName="valor"/>
+                    <div *ngIf="editForm.get('valor').invalid && (editForm.get('valor').dirty || editForm.get('valor').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('valor').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_etiqueta">Etiqueta</label>
+                    <input type="text" class="form-control" name="etiqueta" id="field_etiqueta"
+                           formControlName="etiqueta"/>
+                    <div *ngIf="editForm.get('etiqueta').invalid && (editForm.get('etiqueta').dirty || editForm.get('etiqueta').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('etiqueta').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="descripcion" id="field_descripcion"
+                           formControlName="descripcion"/>
+                    <div *ngIf="editForm.get('descripcion').invalid && (editForm.get('descripcion').dirty || editForm.get('descripcion').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('descripcion').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tipoDeDominio">Tipo De Dominio</label>
+                    <select class="form-control" name="tipoDeDominio" formControlName="tipoDeDominio" id="field_tipoDeDominio">
+                        <option value="PAIS">PAIS</option>
+                        <option value="PROVINCIA">PROVINCIA</option>
+                        <option value="CIUDAD">CIUDAD</option>
+                        <option value="RUBRO">RUBRO</option>
+                        <option value="ACTIVIDAD">ACTIVIDAD</option>
+                        <option value="ROL">ROL</option>
+                        <option value="UNIDAD">UNIDAD</option>
+                    </select>
+                    <div *ngIf="editForm.get('tipoDeDominio').invalid && (editForm.get('tipoDeDominio').dirty || editForm.get('tipoDeDominio').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('tipoDeDominio').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

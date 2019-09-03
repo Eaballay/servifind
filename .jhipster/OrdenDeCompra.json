@@ -1,0 +1,54 @@
+{
+    "name": "OrdenDeCompra",
+    "fields": [
+        {
+            "fieldName": "nroOrdenDeCompra",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fechaDeCreacion",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "presupuesto",
+            "otherEntityRelationshipName": "ordenDeCompra",
+            "relationshipName": "presupuesto",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "empleado",
+            "otherEntityRelationshipName": "ordenDeCompra",
+            "relationshipName": "empleado",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "ordenDeCompra",
+            "relationshipName": "estado",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190903220556",
+    "entityTableName": "orden_de_compra",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

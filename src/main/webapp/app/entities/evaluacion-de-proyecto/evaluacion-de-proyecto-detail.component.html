@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="evaluacionDeProyecto">
+            <h2><span>Evaluacion De Proyecto</span> {{evaluacionDeProyecto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Comentario</span></dt>
+                <dd>
+                    <span>{{evaluacionDeProyecto.comentario}}</span>
+                </dd>
+                <dt><span>Calificacion</span></dt>
+                <dd>
+                    <span>{{evaluacionDeProyecto.calificacion}}</span>
+                </dd>
+                <dt><span>Fecha De Creacion</span></dt>
+                <dd>
+                    <span>{{evaluacionDeProyecto.fechaDeCreacion}}</span>
+                </dd>
+                <dt><span>Proyecto</span></dt>
+                <dd>
+                    <div *ngIf="evaluacionDeProyecto.proyecto">
+                        <a [routerLink]="['/proyecto', evaluacionDeProyecto.proyecto?.id, 'view']">{{evaluacionDeProyecto.proyecto?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/evaluacion-de-proyecto', evaluacionDeProyecto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

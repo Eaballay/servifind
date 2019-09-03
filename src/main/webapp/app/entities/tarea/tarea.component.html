@@ -1,0 +1,83 @@
+<div>
+    <h2 id="page-heading">
+        <span>Tareas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-tarea" [routerLink]="['/tarea/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Tarea
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="tareas?.length === 0">
+        <span>No tareas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="tareas?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Nombre</span></th>
+            <th><span>Descripcion</span></th>
+            <th><span>Precio Por Unidad</span></th>
+            <th><span>Fecha De Creacion</span></th>
+            <th><span>Fecha De Modificacion</span></th>
+            <th><span>Actividad</span></th>
+            <th><span>Unidad</span></th>
+            <th><span>Estado</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let tarea of tareas ;trackBy: trackId">
+                <td><a [routerLink]="['/tarea', tarea.id, 'view' ]">{{tarea.id}}</a></td>
+                <td>{{tarea.nombre}}</td>
+                <td>{{tarea.descripcion}}</td>
+                <td>{{tarea.precioPorUnidad}}</td>
+                <td>{{tarea.fechaDeCreacion | date:'medium'}}</td>
+                <td>{{tarea.fechaDeModificacion | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="tarea.actividad">
+                        <a [routerLink]="['/dominio', tarea.actividad?.id, 'view' ]" >{{tarea.actividad?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tarea.unidad">
+                        <a [routerLink]="['/dominio', tarea.unidad?.id, 'view' ]" >{{tarea.unidad?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="tarea.estado">
+                        <a [routerLink]="['/dominio', tarea.estado?.id, 'view' ]" >{{tarea.estado?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/tarea', tarea.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/tarea', tarea.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/tarea', { outlets: { popup: tarea.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Detalle De Presupuestos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-detalle-de-presupuesto" [routerLink]="['/detalle-de-presupuesto/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Detalle De Presupuesto
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="detalleDePresupuestos?.length === 0">
+        <span>No detalleDePresupuestos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="detalleDePresupuestos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Cantidad</span></th>
+            <th><span>Valor Por Unidad</span></th>
+            <th><span>Descripcion</span></th>
+            <th><span>Presupuesto</span></th>
+            <th><span>Unidad</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let detalleDePresupuesto of detalleDePresupuestos ;trackBy: trackId">
+                <td><a [routerLink]="['/detalle-de-presupuesto', detalleDePresupuesto.id, 'view' ]">{{detalleDePresupuesto.id}}</a></td>
+                <td>{{detalleDePresupuesto.cantidad}}</td>
+                <td>{{detalleDePresupuesto.valorPorUnidad}}</td>
+                <td>{{detalleDePresupuesto.descripcion}}</td>
+                <td>
+                    <div *ngIf="detalleDePresupuesto.presupuesto">
+                        <a [routerLink]="['/presupuesto', detalleDePresupuesto.presupuesto?.id, 'view' ]" >{{detalleDePresupuesto.presupuesto?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detalleDePresupuesto.unidad">
+                        <a [routerLink]="['/dominio', detalleDePresupuesto.unidad?.id, 'view' ]" >{{detalleDePresupuesto.unidad?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/detalle-de-presupuesto', detalleDePresupuesto.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/detalle-de-presupuesto', detalleDePresupuesto.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/detalle-de-presupuesto', { outlets: { popup: detalleDePresupuesto.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

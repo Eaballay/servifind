@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Tarea.
+    -->
+    <changeSet id="20190903220555-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="actividad_id"
+                                 baseTableName="tarea"
+                                 constraintName="fk_tarea_actividad_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dominio"/>
+
+        <addForeignKeyConstraint baseColumnNames="unidad_id"
+                                 baseTableName="tarea"
+                                 constraintName="fk_tarea_unidad_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dominio"/>
+
+        <addForeignKeyConstraint baseColumnNames="estado_id"
+                                 baseTableName="tarea"
+                                 constraintName="fk_tarea_estado_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dominio"/>
+
+    </changeSet>
+</databaseChangeLog>

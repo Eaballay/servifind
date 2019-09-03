@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="ordenDeCompra">
+            <h2><span>Orden De Compra</span> {{ordenDeCompra.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nro Orden De Compra</span></dt>
+                <dd>
+                    <span>{{ordenDeCompra.nroOrdenDeCompra}}</span>
+                </dd>
+                <dt><span>Fecha De Creacion</span></dt>
+                <dd>
+                    <span>{{ordenDeCompra.fechaDeCreacion}}</span>
+                </dd>
+                <dt><span>Presupuesto</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeCompra.presupuesto">
+                        <a [routerLink]="['/presupuesto', ordenDeCompra.presupuesto?.id, 'view']">{{ordenDeCompra.presupuesto?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Empleado</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeCompra.empleado">
+                        <a [routerLink]="['/empleado', ordenDeCompra.empleado?.id, 'view']">{{ordenDeCompra.empleado?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Estado</span></dt>
+                <dd>
+                    <div *ngIf="ordenDeCompra.estado">
+                        <a [routerLink]="['/dominio', ordenDeCompra.estado?.id, 'view']">{{ordenDeCompra.estado?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/orden-de-compra', ordenDeCompra.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
