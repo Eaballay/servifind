@@ -10,6 +10,8 @@ import { Title } from '@angular/platform-browser';
 export class JhiMainComponent implements OnInit {
   constructor(private titleService: Title, private router: Router) {}
 
+  isMobile = false;
+
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
     let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'serviFindApp';
     if (routeSnapshot.firstChild) {
@@ -27,5 +29,12 @@ export class JhiMainComponent implements OnInit {
         this.router.navigate(['/404']);
       }
     });
+
+    var ua = navigator.userAgent;
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(ua)) {
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
   }
 }

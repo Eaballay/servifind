@@ -1,11 +1,22 @@
-<jhi-page-ribbon></jhi-page-ribbon>
-<div>
-    <router-outlet name="navbar"></router-outlet>
-</div>
-<div class="container-fluid">
-    <div class="card jh-card">
-        <router-outlet></router-outlet>
-        <router-outlet name="popup"></router-outlet>
+<ng-container *ngIf="!isMobile">
+    <jhi-page-ribbon></jhi-page-ribbon>
+    <div>
+        <router-outlet name="navbar"></router-outlet>
     </div>
-    <jhi-footer></jhi-footer>
-</div>
+    <div class="container-fluid">
+        <div class="card jh-card">
+            <router-outlet></router-outlet>
+            <router-outlet name="popup"></router-outlet>
+        </div>
+        <jhi-footer></jhi-footer>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="isMobile">
+    <div class="container-fluid h-100 bg-dark">
+        <div class="row justify-content-center" style="height: 100vh">
+            <h4 class="text-white">Esto es mobile</h4>
+        </div>
+    </div>
+
+</ng-container>
