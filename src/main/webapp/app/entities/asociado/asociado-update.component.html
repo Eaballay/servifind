@@ -16,7 +16,7 @@
                     <div *ngIf="editForm.get('nroDeAsociado').invalid && (editForm.get('nroDeAsociado').dirty || editForm.get('nroDeAsociado').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('nroDeAsociado').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                         <small class="form-text text-danger"
                             [hidden]="!editForm.get('nroDeAsociado')?.errors?.number">

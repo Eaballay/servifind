@@ -25,7 +25,7 @@
         {
             "fieldName": "tipoDeDominio",
             "fieldType": "TipoDeDominio",
-            "fieldValues": "PAIS,PROVINCIA,CIUDAD,RUBRO,ACTIVIDAD,ROL,UNIDAD",
+            "fieldValues": "PAIS,PROVINCIA,CIUDAD,RUBRO,DIMENSION,TIPO_TAREA,ROL,UNIDAD",
             "fieldValidateRules": [
                 "required"
             ]

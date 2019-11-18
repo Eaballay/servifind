@@ -1,6 +1,7 @@
 package com.tesis.servifind.web.rest;
 
 import com.tesis.servifind.domain.Dominio;
+import com.tesis.servifind.domain.enumeration.TipoDeDominio;
 import com.tesis.servifind.repository.DominioRepository;
 import com.tesis.servifind.web.rest.errors.BadRequestAlertException;
 
@@ -89,6 +90,24 @@ public class DominioResource {
     public List<Dominio> getAllDominios() {
         log.debug("REST request to get all Dominios");
         return dominioRepository.findAll();
+    }
+
+    @GetMapping("/dominios/rubros")
+    public List<Dominio> getAllDominiosRubros() {
+        log.debug("REST request to get all Dominios rubros");
+        return dominioRepository.findByTipoDeDominioEquals(TipoDeDominio.RUBRO);
+    }
+
+    @GetMapping("/dominios/dimension/{startsWith}")
+    public List<Dominio> getAllDominiosDimension(@PathVariable String startsWith) {
+        log.debug("REST request to get all Dominios dimension: ", startsWith);
+        return dominioRepository.findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio.DIMENSION, startsWith);
+    }
+
+    @GetMapping("/dominios/tipo_tareas/{startsWith}")
+    public List<Dominio> getAllDominiosTipoTareas(@PathVariable String startsWith) {
+        log.debug("REST request to get all Dominios tipo tarea: ", startsWith);
+        return dominioRepository.findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio.TIPO_TAREA, startsWith);
     }
 
     /**

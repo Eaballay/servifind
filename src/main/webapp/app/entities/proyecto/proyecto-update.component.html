@@ -16,7 +16,7 @@
                     <div *ngIf="editForm.get('nroDeProyecto').invalid && (editForm.get('nroDeProyecto').dirty || editForm.get('nroDeProyecto').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('nroDeProyecto').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                         <small class="form-text text-danger"
                             [hidden]="!editForm.get('nroDeProyecto')?.errors?.number">
@@ -31,7 +31,7 @@
                     <div *ngIf="editForm.get('descripcion').invalid && (editForm.get('descripcion').dirty || editForm.get('descripcion').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('descripcion').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <div *ngIf="editForm.get('direccion').invalid && (editForm.get('direccion').dirty || editForm.get('direccion').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('direccion').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                     <div *ngIf="editForm.get('fechaDeCreacion').invalid && (editForm.get('fechaDeCreacion').dirty || editForm.get('fechaDeCreacion').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('fechaDeCreacion').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                         <small class="form-text text-danger"
                             [hidden]="!editForm.get('fechaDeCreacion').errors?.ZonedDateTimelocal">

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IDominio } from 'app/shared/model/dominio.model';
@@ -34,5 +33,20 @@ export class DominioService {
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  getRubros(): Observable<EntityArrayResponseType> {
+    console.log('dominioService -> getRubros ');
+    return this.http.get<IDominio[]>(`${this.resourceUrl}/rubros`, { observe: 'response' });
+  }
+
+  getDimensiones(value: string): Observable<EntityArrayResponseType> {
+    console.log('dominioService -> getDimensiones: ', value);
+    return this.http.get<IDominio[]>(`${this.resourceUrl}/dimension/${value}`, { observe: 'response' });
+  }
+
+  getTipoTareas(value: string): Observable<EntityArrayResponseType> {
+    console.log('dominioService -> getTipoTareas: ', value);
+    return this.http.get<IDominio[]>(`${this.resourceUrl}/tipo_tareas/${value}`, { observe: 'response' });
   }
 }

@@ -16,7 +16,7 @@
                     <div *ngIf="editForm.get('valor').invalid && (editForm.get('valor').dirty || editForm.get('valor').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('valor').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div *ngIf="editForm.get('etiqueta').invalid && (editForm.get('etiqueta').dirty || editForm.get('etiqueta').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('etiqueta').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div *ngIf="editForm.get('descripcion').invalid && (editForm.get('descripcion').dirty || editForm.get('descripcion').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('descripcion').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                     </div>
                 </div>
@@ -49,14 +49,15 @@
                         <option value="PROVINCIA">PROVINCIA</option>
                         <option value="CIUDAD">CIUDAD</option>
                         <option value="RUBRO">RUBRO</option>
-                        <option value="ACTIVIDAD">ACTIVIDAD</option>
+                        <option value="DIMENSION">DIMENSION</option>
+                        <option value="TIPO_TAREA">TIPO DE TAREA</option>
                         <option value="ROL">ROL</option>
                         <option value="UNIDAD">UNIDAD</option>
                     </select>
                     <div *ngIf="editForm.get('tipoDeDominio').invalid && (editForm.get('tipoDeDominio').dirty || editForm.get('tipoDeDominio').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('tipoDeDominio').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                     </div>
                 </div>

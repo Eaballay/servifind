@@ -17,7 +17,7 @@
                     <div *ngIf="editForm.get('fechaDeContratacion').invalid && (editForm.get('fechaDeContratacion').dirty || editForm.get('fechaDeContratacion').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('fechaDeContratacion').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                         <small class="form-text text-danger"
                             [hidden]="!editForm.get('fechaDeContratacion').errors?.ZonedDateTimelocal">
@@ -32,7 +32,7 @@
                     <div *ngIf="editForm.get('nroDeLegajo').invalid && (editForm.get('nroDeLegajo').dirty || editForm.get('nroDeLegajo').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('nroDeLegajo').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                         <small class="form-text text-danger"
                             [hidden]="!editForm.get('nroDeLegajo')?.errors?.number">

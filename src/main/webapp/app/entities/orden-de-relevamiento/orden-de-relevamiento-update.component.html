@@ -22,7 +22,7 @@
                     <div *ngIf="editForm.get('fecha').invalid && (editForm.get('fecha').dirty || editForm.get('fecha').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('fecha').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                         <small class="form-text text-danger"
                             [hidden]="!editForm.get('fecha').errors?.ZonedDateTimelocal">
@@ -38,7 +38,7 @@
                     <div *ngIf="editForm.get('hora').invalid && (editForm.get('hora').dirty || editForm.get('hora').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('hora').errors.required">
-                        This field is required.
+                        Este campo es requerido.
                         </small>
                         <small class="form-text text-danger"
                             [hidden]="!editForm.get('hora').errors?.ZonedDateTimelocal">
