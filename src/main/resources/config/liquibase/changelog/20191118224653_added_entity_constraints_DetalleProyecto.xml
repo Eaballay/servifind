@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity DetalleProyecto.
+    -->
+    <changeSet id="20191118224653-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="proyecto_id"
+                                 baseTableName="detalle_proyecto"
+                                 constraintName="fk_detalle_proyecto_proyecto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proyecto"/>
+
+        <addForeignKeyConstraint baseColumnNames="rubro_id"
+                                 baseTableName="detalle_proyecto"
+                                 constraintName="fk_detalle_proyecto_rubro_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dominio"/>
+
+        <addForeignKeyConstraint baseColumnNames="dimension_id"
+                                 baseTableName="detalle_proyecto"
+                                 constraintName="fk_detalle_proyecto_dimension_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dominio"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_de_tarea_id"
+                                 baseTableName="detalle_proyecto"
+                                 constraintName="fk_detalle_proyecto_tipo_de_tarea_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dominio"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -68,6 +68,7 @@ public class CacheConfiguration {
             createCache(cm, com.tesis.servifind.domain.DetalleDeOrdenDeCompra.class.getName());
             createCache(cm, com.tesis.servifind.domain.OrdenDeRelevamiento.class.getName());
             createCache(cm, com.tesis.servifind.domain.EvaluacionDeProyecto.class.getName());
+            createCache(cm, com.tesis.servifind.domain.DetalleProyecto.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

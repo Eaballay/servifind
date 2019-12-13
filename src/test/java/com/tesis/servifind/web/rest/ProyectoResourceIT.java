@@ -2,6 +2,7 @@ package com.tesis.servifind.web.rest;
 
 import com.tesis.servifind.ServiFindApp;
 import com.tesis.servifind.domain.Proyecto;
+import com.tesis.servifind.repository.DetalleProyectoRepository;
 import com.tesis.servifind.repository.ProyectoRepository;
 import com.tesis.servifind.web.rest.errors.ExceptionTranslator;
 
@@ -59,6 +60,8 @@ public class ProyectoResourceIT {
 
     @Autowired
     private ProyectoRepository proyectoRepository;
+    @Autowired
+    private DetalleProyectoRepository detalleProyectoRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -82,7 +85,7 @@ public class ProyectoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ProyectoResource proyectoResource = new ProyectoResource(proyectoRepository);
+        final ProyectoResource proyectoResource = new ProyectoResource(proyectoRepository, detalleProyectoRepository);
         this.restProyectoMockMvc = MockMvcBuilders.standaloneSetup(proyectoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -93,7 +96,7 @@ public class ProyectoResourceIT {
 
     /**
      * Create an entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -107,9 +110,10 @@ public class ProyectoResourceIT {
             .fechaDeCreacion(DEFAULT_FECHA_DE_CREACION);
         return proyecto;
     }
+
     /**
      * Create an updated entity for this test.
-     *
+     * <p>
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
@@ -262,7 +266,7 @@ public class ProyectoResourceIT {
             .andExpect(jsonPath("$.[*].fechaDeFinalizacion").value(hasItem(DEFAULT_FECHA_DE_FINALIZACION.toString())))
             .andExpect(jsonPath("$.[*].fechaDeCreacion").value(hasItem(DEFAULT_FECHA_DE_CREACION.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getProyecto() throws Exception {

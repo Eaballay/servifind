@@ -31,6 +31,7 @@
     <include file="config/liquibase/changelog/20190903220557_added_entity_DetalleDeOrdenDeCompra.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190903220558_added_entity_OrdenDeRelevamiento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190903220559_added_entity_EvaluacionDeProyecto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191118224653_added_entity_DetalleProyecto.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190903220543_added_entity_constraints_Dominio.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190903220544_added_entity_constraints_Persona.xml" relativeToChangelogFile="false"/>
@@ -49,5 +50,6 @@
     <include file="config/liquibase/changelog/20190903220558_added_entity_constraints_OrdenDeRelevamiento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190903220559_added_entity_constraints_EvaluacionDeProyecto.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190903220552_added_entity_constraints_Proyecto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191118224653_added_entity_constraints_DetalleProyecto.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

@@ -90,47 +90,55 @@
 
                 <div class="text-center" *ngIf="showFinal && !loadingRubros">
 
-                   <!-- <div class="row p-3 justify-content-center">
-                        <div class="rounded-circle p-1 m-1 justify-content-center rounded-rubro"
-                             [ngStyle]="{'background-color': getRandomColor()}"
-                             style="height: 100px; width: 100px;">
-                            <div class="row h-100">
+                    <div class="row p-3 justify-content-center">
+                        <ng-container *ngFor="let detalle of listaDeDetalles">
+                            <div class="rounded-circle p-1 m-1 justify-content-center rounded-rubro"
+                                 [ngStyle]="{'background-color': getRandomColor()}"
+                                 style="height: 100px; width: 100px;">
+                                <div class="row h-100">
                                     <span
-                                        class="font-weight-bold text-white my-auto w-100">{{proyecto.rubro.etiqueta}}</span>
+                                        class="font-weight-bold text-white my-auto w-100">{{detalle.rubro.etiqueta}}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="rounded-circle p-1 m-1 justify-content-center rounded-rubro"
-                             [ngStyle]="{'background-color': getRandomColor()}"
-                             style="height: 100px; width: 100px;">
-                            <div class="row h-100">
+
+                            <div class="rounded-circle p-1 m-1 justify-content-center rounded-rubro"
+                                 [ngStyle]="{'background-color': getRandomColor()}"
+                                 style="height: 100px; width: 100px;">
+                                <div class="row h-100">
                                     <span
-                                        class="font-weight-bold text-white my-auto w-100">{{proyecto.dimension.etiqueta}}</span>
+                                        class="font-weight-bold text-white my-auto w-100">{{detalle.dimension.etiqueta}}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="rounded-circle p-1 m-1 justify-content-center rounded-rubro"
-                             [ngStyle]="{'background-color': getRandomColor()}"
-                             style="height: 100px; width: 100px;">
-                            <div class="row h-100">
+
+                            <div class="rounded-circle p-1 m-1 justify-content-center rounded-rubro"
+                                 [ngStyle]="{'background-color': getRandomColor()}"
+                                 style="height: 100px; width: 100px;">
+                                <div class="row h-100">
                                     <span
-                                        class="font-weight-bold text-white my-auto w-100">{{proyecto.tipoTarea.etiqueta}}</span>
+                                        class="font-weight-bold text-white my-auto w-100">{{detalle.tipoDeTarea.etiqueta}}</span>
+                                </div>
                             </div>
-                        </div>
-                    </div>-->
+                        </ng-container>
+
+                        <button class="btn btn-lg btn-success mt-3 rounded-circle" style="height: 60px; width: 60px; font-size: 1.5rem"
+                                (click)="agregarTarea()"> +
+                        </button>
+                    </div>
 
                     <div class="p-3 justify-content-center">
 
                         <span class="font-weight-bold text-white">Descripción del proyecto</span><br>
                         <textarea class="text-white mt-2 bg-dark rounded"
-                                  style="height: 200px; width: 85%; font-size: 1.2rem"></textarea>
+                                  style="height: 200px; width: 85%; font-size: 1.2rem" [(ngModel)]="descripcionProyecto"></textarea>
 
 
                         <span class="font-weight-bold text-white">Dirección del lugar donde se trabajara</span><br>
-                        <input type="text" class="text-white mt-2 bg-dark rounded"
+                        <input type="text" class="text-white mt-2 bg-dark rounded" [(ngModel)]="direccionProyecto"
                                style="width: 85%; font-size: 1.2rem">
 
                     </div>
 
-                    <button class="btn btn-lg btn-success mt-3 rounded" (click)="volverAtras()">Finalizar</button>
+                    <button class="btn btn-lg btn-success mt-3 rounded" (click)="crearProyecto()">Finalizar</button>
                     <button class="btn btn-lg btn-secondary mt-3 rounded" (click)="volverAtras()">Atras</button>
 
                 </div>

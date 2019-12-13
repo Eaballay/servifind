@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-detalle-proyecto-heading">Create or edit a Detalle Proyecto</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_proyecto">Proyecto</label>
+                    <select class="form-control" id="field_proyecto" name="proyecto" formControlName="proyecto">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="proyectoOption.id === editForm.get('proyecto').value?.id ? editForm.get('proyecto').value : proyectoOption" *ngFor="let proyectoOption of proyectos; trackBy: trackProyectoById">{{proyectoOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_rubro">Rubro</label>
+                    <select class="form-control" id="field_rubro" name="rubro" formControlName="rubro">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dominioOption.id === editForm.get('rubro').value?.id ? editForm.get('rubro').value : dominioOption" *ngFor="let dominioOption of rubros; trackBy: trackDominioById">{{dominioOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dimension">Dimension</label>
+                    <select class="form-control" id="field_dimension" name="dimension" formControlName="dimension">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dominioOption.id === editForm.get('dimension').value?.id ? editForm.get('dimension').value : dominioOption" *ngFor="let dominioOption of dimensions; trackBy: trackDominioById">{{dominioOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_tipoDeTarea">Tipo De Tarea</label>
+                    <select class="form-control" id="field_tipoDeTarea" name="tipoDeTarea" formControlName="tipoDeTarea">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="dominioOption.id === editForm.get('tipoDeTarea').value?.id ? editForm.get('tipoDeTarea').value : dominioOption" *ngFor="let dominioOption of tipodetareas; trackBy: trackDominioById">{{dominioOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

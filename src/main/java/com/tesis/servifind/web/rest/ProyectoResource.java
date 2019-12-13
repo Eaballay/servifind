@@ -1,6 +1,9 @@
 package com.tesis.servifind.web.rest;
 
+import com.tesis.servifind.domain.DetalleProyecto;
+import com.tesis.servifind.domain.Dominio;
 import com.tesis.servifind.domain.Proyecto;
+import com.tesis.servifind.repository.DetalleProyectoRepository;
 import com.tesis.servifind.repository.ProyectoRepository;
 import com.tesis.servifind.web.rest.errors.BadRequestAlertException;
 
@@ -34,9 +37,11 @@ public class ProyectoResource {
     private String applicationName;
 
     private final ProyectoRepository proyectoRepository;
+    private final DetalleProyectoRepository detalleProyectoRepository;
 
-    public ProyectoResource(ProyectoRepository proyectoRepository) {
+    public ProyectoResource(ProyectoRepository proyectoRepository, DetalleProyectoRepository detalleProyectoRepository) {
         this.proyectoRepository = proyectoRepository;
+        this.detalleProyectoRepository = detalleProyectoRepository;
     }
 
     /**
@@ -53,6 +58,24 @@ public class ProyectoResource {
             throw new BadRequestAlertException("A new proyecto cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Proyecto result = proyectoRepository.save(proyecto);
+        return ResponseEntity.created(new URI("/api/proyectos/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    @PostMapping("/proyectos/conDetalle")
+    public ResponseEntity<Proyecto> createProyectoWithDetalle(@Valid @RequestBody Proyecto proyecto, @RequestBody List<DetalleProyecto> detalles) throws URISyntaxException {
+        log.debug("REST request to save Proyecto with detailes : {}", proyecto);
+        if (proyecto.getId() != null) {
+            throw new BadRequestAlertException("A new proyecto cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        Proyecto result = proyectoRepository.save(proyecto);
+
+        for (DetalleProyecto detalle : detalles) {
+            detalle.setProyecto(result);
+            detalleProyectoRepository.save(detalle);
+        }
+
         return ResponseEntity.created(new URI("/api/proyectos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -82,7 +105,6 @@ public class ProyectoResource {
     /**
      * {@code GET  /proyectos} : get all the proyectos.
      *
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of proyectos in body.
      */
     @GetMapping("/proyectos")

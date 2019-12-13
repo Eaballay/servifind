@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Detalle Proyectos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-detalle-proyecto" [routerLink]="['/detalle-proyecto/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create a new Detalle Proyecto
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="detalleProyectos?.length === 0">
+        <span>No detalleProyectos found</span>
+    </div>
+    <div class="table-responsive" *ngIf="detalleProyectos?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Proyecto</span></th>
+            <th><span>Rubro</span></th>
+            <th><span>Dimension</span></th>
+            <th><span>Tipo De Tarea</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let detalleProyecto of detalleProyectos ;trackBy: trackId">
+                <td><a [routerLink]="['/detalle-proyecto', detalleProyecto.id, 'view' ]">{{detalleProyecto.id}}</a></td>
+                <td>
+                    <div *ngIf="detalleProyecto.proyecto">
+                        <a [routerLink]="['/proyecto', detalleProyecto.proyecto?.id, 'view' ]" >{{detalleProyecto.proyecto?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detalleProyecto.rubro">
+                        <a [routerLink]="['/dominio', detalleProyecto.rubro?.id, 'view' ]" >{{detalleProyecto.rubro?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detalleProyecto.dimension">
+                        <a [routerLink]="['/dominio', detalleProyecto.dimension?.id, 'view' ]" >{{detalleProyecto.dimension?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="detalleProyecto.tipoDeTarea">
+                        <a [routerLink]="['/dominio', detalleProyecto.tipoDeTarea?.id, 'view' ]" >{{detalleProyecto.tipoDeTarea?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/detalle-proyecto', detalleProyecto.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/detalle-proyecto', detalleProyecto.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/detalle-proyecto', { outlets: { popup: detalleProyecto.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

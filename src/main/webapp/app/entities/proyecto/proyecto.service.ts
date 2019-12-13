@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared';
 import { IProyecto } from 'app/shared/model/proyecto.model';
+import { IDominio } from 'app/shared/model/dominio.model';
+import { IDetalleProyecto } from 'app/shared/model/detalle-proyecto.model';
 
 type EntityResponseType = HttpResponse<IProyecto>;
 type EntityArrayResponseType = HttpResponse<IProyecto[]>;
@@ -22,6 +24,13 @@ export class ProyectoService {
     const copy = this.convertDateFromClient(proyecto);
     return this.http
       .post<IProyecto>(this.resourceUrl, copy, { observe: 'response' })
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+  }
+
+  createWithDetalle(proyecto: IProyecto, listaDeDetalles: IDetalleProyecto[]): Observable<EntityResponseType> {
+    const copy = this.convertDateFromClient(proyecto);
+    return this.http
+      .post<IProyecto>(this.resourceUrl + '/conDetalle', [copy, listaDeDetalles], { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 

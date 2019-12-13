@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="detalleProyecto">
+            <h2><span>Detalle Proyecto</span> {{detalleProyecto.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Proyecto</span></dt>
+                <dd>
+                    <div *ngIf="detalleProyecto.proyecto">
+                        <a [routerLink]="['/proyecto', detalleProyecto.proyecto?.id, 'view']">{{detalleProyecto.proyecto?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Rubro</span></dt>
+                <dd>
+                    <div *ngIf="detalleProyecto.rubro">
+                        <a [routerLink]="['/dominio', detalleProyecto.rubro?.id, 'view']">{{detalleProyecto.rubro?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Dimension</span></dt>
+                <dd>
+                    <div *ngIf="detalleProyecto.dimension">
+                        <a [routerLink]="['/dominio', detalleProyecto.dimension?.id, 'view']">{{detalleProyecto.dimension?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Tipo De Tarea</span></dt>
+                <dd>
+                    <div *ngIf="detalleProyecto.tipoDeTarea">
+                        <a [routerLink]="['/dominio', detalleProyecto.tipoDeTarea?.id, 'view']">{{detalleProyecto.tipoDeTarea?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/detalle-proyecto', detalleProyecto.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

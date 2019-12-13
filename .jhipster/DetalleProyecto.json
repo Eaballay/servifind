@@ -1,0 +1,47 @@
+{
+    "name": "DetalleProyecto",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "proyecto",
+            "otherEntityRelationshipName": "detalleProyecto",
+            "relationshipName": "proyecto",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "detalleProyecto",
+            "relationshipName": "rubro",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "detalleProyecto",
+            "relationshipName": "dimension",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "dominio",
+            "otherEntityRelationshipName": "detalleProyecto",
+            "relationshipName": "tipoDeTarea",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20191118224653",
+    "entityTableName": "detalle_proyecto",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
