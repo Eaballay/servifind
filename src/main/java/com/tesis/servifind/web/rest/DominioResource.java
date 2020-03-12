@@ -104,6 +104,18 @@ public class DominioResource {
         return dominioRepository.findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio.DIMENSION, startsWith);
     }
 
+    @GetMapping("/dominios/actividad/{startsWith}")
+    public List<Dominio> getAllDominiosActividad(@PathVariable String startsWith) {
+        log.debug("REST request to get all Dominios actividad: ", startsWith);
+        return dominioRepository.findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio.ACTIVIDAD, startsWith);
+    }
+
+    @GetMapping("/dominios/tarea/{startsWith}")
+    public List<Dominio> getAllDominiosTarea(@PathVariable String startsWith) {
+        log.debug("REST request to get all Dominios tarea: ", startsWith);
+        return dominioRepository.findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio.TAREA, startsWith);
+    }
+
     @GetMapping("/dominios/tipo_tareas/{startsWith}")
     public List<Dominio> getAllDominiosTipoTareas(@PathVariable String startsWith) {
         log.debug("REST request to get all Dominios tipo tarea: ", startsWith);

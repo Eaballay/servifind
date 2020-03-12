@@ -40,6 +40,11 @@ export class DominioService {
     return this.http.get<IDominio[]>(`${this.resourceUrl}/rubros`, { observe: 'response' });
   }
 
+  getActividades(value: string): Observable<EntityArrayResponseType> {
+    console.log('dominioService -> getActividades: ', value);
+    return this.http.get<IDominio[]>(`${this.resourceUrl}/actividad/${value}`, { observe: 'response' });
+  }
+
   getDimensiones(value: string): Observable<EntityArrayResponseType> {
     console.log('dominioService -> getDimensiones: ', value);
     return this.http.get<IDominio[]>(`${this.resourceUrl}/dimension/${value}`, { observe: 'response' });
@@ -48,5 +53,10 @@ export class DominioService {
   getTipoTareas(value: string): Observable<EntityArrayResponseType> {
     console.log('dominioService -> getTipoTareas: ', value);
     return this.http.get<IDominio[]>(`${this.resourceUrl}/tipo_tareas/${value}`, { observe: 'response' });
+  }
+
+  getTareas(value: string): Observable<EntityArrayResponseType> {
+    console.log('dominioService -> getTareas: ', value);
+    return this.http.get<IDominio[]>(`${this.resourceUrl}/tarea/${value}`, { observe: 'response' });
   }
 }

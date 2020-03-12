@@ -135,7 +135,7 @@ export class JhiMainComponent implements OnInit {
     console.log('Obteniendo actividades: ', rubro.etiqueta);
     this.rubroSelecionado = rubro;
     this.dominioService
-      .getDimensiones(rubro.valor)
+      .getActividades(rubro.valor)
       .pipe(
         filter((res: HttpResponse<IDominio[]>) => res.ok),
         map((res: HttpResponse<IDominio[]>) => res.body)
@@ -161,7 +161,7 @@ export class JhiMainComponent implements OnInit {
     console.log('Obteniendo tareas: ', dimension.etiqueta);
     this.dimensionSelecionada = dimension;
     this.dominioService
-      .getTipoTareas(dimension.valor)
+      .getTareas(dimension.valor)
       .pipe(
         filter((res: HttpResponse<IDominio[]>) => res.ok),
         map((res: HttpResponse<IDominio[]>) => res.body)
