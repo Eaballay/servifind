@@ -35,6 +35,7 @@ export class JhiMainComponent implements OnInit {
   //actividades: string[] = ['Interior', 'Exterior', 'Grandes proyectos'];
   actividadesS: IDominio[];
   tareasS: IDominio[];
+  requerimientos: IDominio[];
 
   modalRef: NgbModalRef;
 
@@ -189,7 +190,36 @@ export class JhiMainComponent implements OnInit {
       this.listaDeDetalles.push(detalle);
     }
     this.showTareas = false;
-    this.showFinal = true;
+    this.showFinalStage(this.listaDeDetalles);
+  }
+
+  showFinalStage(listaDeDetalles: DetalleProyecto[]) {
+    this.requerimientos = undefined;
+    console.log('showFinalStage: ' + JSON.stringify(listaDeDetalles));
+    for (let detalle of listaDeDetalles) {
+      this.dominioService
+        .getRequerimientos(detalle.tipoDeTarea.valor)
+        .pipe(
+          filter((res: HttpResponse<IDominio[]>) => res.ok),
+          map((res: HttpResponse<IDominio[]>) => res.body)
+        )
+        .subscribe(
+          (res: IDominio[]) => {
+            console.log(JSON.stringify(res));
+            if (!this.requerimientos) {
+              this.requerimientos = res;
+            } else {
+              console.log('Appendeando res ' + JSON.stringify(res));
+              for (let req of res) {
+                this.requerimientos.push(req);
+              }
+              console.log('Luego de apendear: ' + JSON.stringify(this.requerimientos));
+            }
+            this.showFinal = true;
+          },
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
   }
 
   agregarTarea() {

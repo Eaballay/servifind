@@ -59,4 +59,9 @@ export class DominioService {
     console.log('dominioService -> getTareas: ', value);
     return this.http.get<IDominio[]>(`${this.resourceUrl}/tarea/${value}`, { observe: 'response' });
   }
+
+  getRequerimientos(value: string): Observable<EntityArrayResponseType> {
+    console.log('dominioService -> getRequerimientos: ', value);
+    return this.http.get<IDominio[]>(`${this.resourceUrl}/requerimiento/${value}`, { observe: 'response' });
+  }
 }

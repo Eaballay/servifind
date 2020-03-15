@@ -150,14 +150,18 @@
 
                     <div class="p-3 justify-content-center">
 
-                        <span class="font-weight-bold text-white">Descripción del proyecto</span><br>
+                        <ng-container *ngIf="requerimientos">
+                            <div class="alert alert-warning text-left" role="alert">
+                                <label> Requisitos sugeridos</label>
+                                <ul *ngFor="let req of requerimientos">
+                                    <li class="font-weight-bold">{{ req.etiqueta}}</li>
+                                </ul>
+                            </div>
+                        </ng-container>
+
+                        <span class="font-weight-bold text-white">Completar</span><br>
                         <textarea class="text-white mt-2 bg-dark rounded"
                                   style="height: 200px; width: 85%; font-size: 1.2rem" [(ngModel)]="descripcionProyecto"></textarea>
-
-
-                        <span class="font-weight-bold text-white">Dirección del lugar donde se trabajara</span><br>
-                        <input type="text" class="text-white mt-2 bg-dark rounded" [(ngModel)]="direccionProyecto"
-                               style="width: 85%; font-size: 1.2rem">
 
                     </div>
 

@@ -15,7 +15,6 @@ import java.util.List;
 @Repository
 public interface DominioRepository extends JpaRepository<Dominio, Long> {
 
-
     List<Dominio> findByTipoDeDominioEquals(TipoDeDominio tipoDeDominio);
 
     List<Dominio> findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio tipoDeDominio, String startsWith);

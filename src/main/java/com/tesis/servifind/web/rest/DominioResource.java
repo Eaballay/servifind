@@ -110,6 +110,12 @@ public class DominioResource {
         return dominioRepository.findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio.ACTIVIDAD, startsWith);
     }
 
+    @GetMapping("/dominios/requerimiento/{startsWith}")
+    public List<Dominio> getAllDominioRequerimiento(@PathVariable String startsWith) {
+        log.debug("REST request to get all Dominios requerimiento: ", startsWith);
+        return dominioRepository.findByTipoDeDominioEqualsAndValorStartsWith(TipoDeDominio.REQUERIMIENTO, startsWith);
+    }
+
     @GetMapping("/dominios/tarea/{startsWith}")
     public List<Dominio> getAllDominiosTarea(@PathVariable String startsWith) {
         log.debug("REST request to get all Dominios tarea: ", startsWith);
