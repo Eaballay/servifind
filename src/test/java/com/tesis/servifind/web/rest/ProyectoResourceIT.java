@@ -2,10 +2,13 @@ package com.tesis.servifind.web.rest;
 
 import com.tesis.servifind.ServiFindApp;
 import com.tesis.servifind.domain.Proyecto;
+import com.tesis.servifind.repository.ClienteRepository;
 import com.tesis.servifind.repository.DetalleProyectoRepository;
 import com.tesis.servifind.repository.ProyectoRepository;
+import com.tesis.servifind.repository.UserRepository;
+import com.tesis.servifind.service.MailService;
 import com.tesis.servifind.web.rest.errors.ExceptionTranslator;
-
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -62,6 +65,12 @@ public class ProyectoResourceIT {
     private ProyectoRepository proyectoRepository;
     @Autowired
     private DetalleProyectoRepository detalleProyectoRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    private MailService mailService;
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -85,7 +94,7 @@ public class ProyectoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final ProyectoResource proyectoResource = new ProyectoResource(proyectoRepository, detalleProyectoRepository);
+        final ProyectoResource proyectoResource = new ProyectoResource(proyectoRepository, detalleProyectoRepository, clienteRepository, mailService, userRepository);
         this.restProyectoMockMvc = MockMvcBuilders.standaloneSetup(proyectoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

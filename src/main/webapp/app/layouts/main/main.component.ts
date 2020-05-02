@@ -29,10 +29,9 @@ export class JhiMainComponent implements OnInit {
     private proyectoService: ProyectoService
   ) {}
 
-  colors: string[] = ['royalblue', 'slateblue', 'darkcyan', 'slategrey', 'salmon', 'brown', 'yellowgreen', 'goldenrod'];
-  //rubros: string[] = ['Carpinteria', 'Plomeria', 'Electricidad', 'Calefacción', 'Construcción', 'Vidrieria'];
+  randomColors: string[] = ['royalblue', 'slateblue', 'darkcyan', 'slategrey', 'salmon', 'brown', 'yellowgreen', 'goldenrod'];
+  consecutiveColors: string[] = ['#704523', '#875C36', '#E1B894', '#C33C23', '#DC453D', '#FF6961', '#4F9EC4', '#6CB2D1', '#B3C8C8'];
   rubrosS: IDominio[];
-  //actividades: string[] = ['Interior', 'Exterior', 'Grandes proyectos'];
   actividadesS: IDominio[];
   tareasS: IDominio[];
   requerimientos: IDominio[];
@@ -49,8 +48,8 @@ export class JhiMainComponent implements OnInit {
 
   proyecto: IProyecto;
   rubroSelecionado: IDominio;
-  dimensionSelecionada: IDominio;
-  tipoTareaSeleccionada: IDominio;
+  actividadSeleccionada: IDominio;
+  tareaSeleccionada: IDominio;
   listaDeDetalles: IDetalleProyecto[];
 
   descripcionProyecto: string;
@@ -120,9 +119,24 @@ export class JhiMainComponent implements OnInit {
     return this.accountService.isAuthenticated();
   }
 
+  randomColorPos = -1;
+
   getRandomColor(): string {
-    let pos = Math.floor(Math.random() * this.colors.length);
-    return this.colors[pos];
+    this.randomColorPos++;
+    if (this.randomColorPos >= this.randomColors.length) {
+      this.randomColorPos = 0;
+    }
+    return this.randomColors[this.randomColorPos];
+  }
+
+  consecutiveColorsPos = 0;
+
+  getConsecutiveColor(): string {
+    this.consecutiveColorsPos++;
+    if (this.consecutiveColorsPos >= this.consecutiveColors.length) {
+      this.consecutiveColorsPos = 0;
+    }
+    return this.consecutiveColors[this.consecutiveColorsPos];
   }
 
   selectRubro(rubro: IDominio) {
@@ -160,7 +174,7 @@ export class JhiMainComponent implements OnInit {
     //}, 900);
 
     console.log('Obteniendo tareas: ', dimension.etiqueta);
-    this.dimensionSelecionada = dimension;
+    this.actividadSeleccionada = dimension;
     this.dominioService
       .getTareas(dimension.valor)
       .pipe(
@@ -178,11 +192,11 @@ export class JhiMainComponent implements OnInit {
   }
 
   selectTarea(tipoTarea: IDominio) {
-    this.tipoTareaSeleccionada = tipoTarea;
+    this.tareaSeleccionada = tipoTarea;
     let detalle = new DetalleProyecto();
     detalle.rubro = this.rubroSelecionado;
-    detalle.dimension = this.dimensionSelecionada;
-    detalle.tipoDeTarea = this.tipoTareaSeleccionada;
+    detalle.dimension = this.actividadSeleccionada;
+    detalle.tipoDeTarea = this.tareaSeleccionada;
 
     if (!this.listaDeDetalles) {
       this.listaDeDetalles = [detalle];
@@ -223,9 +237,9 @@ export class JhiMainComponent implements OnInit {
   }
 
   agregarTarea() {
-    this.rubroSelecionado = undefined;
-    this.dimensionSelecionada = undefined;
-    this.tipoTareaSeleccionada = undefined;
+    this.rubroSelecionado = null;
+    this.actividadSeleccionada = null;
+    this.tareaSeleccionada = null;
     this.showTareas = false;
     this.showActividades = false;
     this.showFinal = false;
@@ -240,6 +254,10 @@ export class JhiMainComponent implements OnInit {
       this.showTareas = false;
       this.showActividades = true;
     } else if (this.showFinal) {
+      this.rubroSelecionado = null;
+      this.actividadSeleccionada = null;
+      this.tareaSeleccionada = null;
+      this.listaDeDetalles = null;
       this.showFinal = false;
       this.showTareas = true;
     }
@@ -247,28 +265,28 @@ export class JhiMainComponent implements OnInit {
 
   crearProyecto() {
     this.proyecto = new Proyecto();
-    this.proyecto.descripcion = this.direccionProyecto;
+    this.proyecto.descripcion = this.descripcionProyecto;
     this.proyecto.direccion = this.direccionProyecto;
     this.proyecto.fechaDeCreacion = moment();
 
     console.log(this.proyecto);
     console.log(this.listaDeDetalles);
 
-    this.proyectoService.createWithDetalle(this.proyecto, this.listaDeDetalles).subscribe(
+    this.proyectoService.createWithDetalle(this.proyecto.descripcion, this.listaDeDetalles).subscribe(
       res => {
         console.log(res);
       },
       err => {
-        console.log(err);
+        console.log(JSON.stringify(err));
       }
     );
   }
 
   cancelar() {
-    this.rubroSelecionado = undefined;
-    this.dimensionSelecionada = undefined;
-    this.tipoTareaSeleccionada = undefined;
-    this.listaDeDetalles = undefined;
+    this.rubroSelecionado = null;
+    this.actividadSeleccionada = null;
+    this.tareaSeleccionada = null;
+    this.listaDeDetalles = null;
 
     this.showRubros = false;
     this.creandoSolicitud = false;

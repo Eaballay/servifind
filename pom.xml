@@ -877,6 +877,7 @@
             </dependencies>
             <properties>
                 <!-- default Spring profiles -->
+                <liquibase.should.run>false</liquibase.should.run>
                 <spring.profiles.active>dev${profile.tls}${profile.no-liquibase}</spring.profiles.active>
             </properties>
         </profile>

@@ -1,12 +1,15 @@
 package com.tesis.servifind.web.rest;
 
 import com.tesis.servifind.domain.DetalleProyecto;
-import com.tesis.servifind.domain.Dominio;
 import com.tesis.servifind.domain.Proyecto;
+import com.tesis.servifind.repository.ClienteRepository;
 import com.tesis.servifind.repository.DetalleProyectoRepository;
 import com.tesis.servifind.repository.ProyectoRepository;
+import com.tesis.servifind.repository.UserRepository;
+import com.tesis.servifind.security.SecurityUtils;
+import com.tesis.servifind.service.MailService;
+import com.tesis.servifind.service.dto.ProyectoConDetalleDTO;
 import com.tesis.servifind.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -18,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,10 +41,17 @@ public class ProyectoResource {
 
     private final ProyectoRepository proyectoRepository;
     private final DetalleProyectoRepository detalleProyectoRepository;
+    private final ClienteRepository clienteRepository;
+    private final MailService mailService;
+    private final UserRepository userRepository;
 
-    public ProyectoResource(ProyectoRepository proyectoRepository, DetalleProyectoRepository detalleProyectoRepository) {
+    public ProyectoResource(ProyectoRepository proyectoRepository, DetalleProyectoRepository detalleProyectoRepository, ClienteRepository clienteRepository, MailService mailService,
+                            UserRepository userRepository) {
         this.proyectoRepository = proyectoRepository;
         this.detalleProyectoRepository = detalleProyectoRepository;
+        this.clienteRepository = clienteRepository;
+        this.mailService = mailService;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -64,17 +74,27 @@ public class ProyectoResource {
     }
 
     @PostMapping("/proyectos/conDetalle")
-    public ResponseEntity<Proyecto> createProyectoWithDetalle(@Valid @RequestBody Proyecto proyecto, @RequestBody List<DetalleProyecto> detalles) throws URISyntaxException {
-        log.debug("REST request to save Proyecto with detailes : {}", proyecto);
-        if (proyecto.getId() != null) {
-            throw new BadRequestAlertException("A new proyecto cannot already have an ID", ENTITY_NAME, "idexists");
-        }
+    public ResponseEntity<Proyecto> createProyectoWithDetalle(@RequestBody ProyectoConDetalleDTO proyectoConDetalleDTO) throws URISyntaxException {
+        log.debug("REST request to save Proyecto with detailes : {}");
+
+        Proyecto proyecto = new Proyecto();
+        proyecto.setCliente(clienteRepository.getOne(18851L));
+        proyecto.setFechaDeCreacion(Instant.now());
+        proyecto.setDescripcion(proyectoConDetalleDTO.getDescripcion());
+        proyecto.setDireccion("");
+        proyecto.setNroDeProyecto((long) Math.random());
+
         Proyecto result = proyectoRepository.save(proyecto);
 
-        for (DetalleProyecto detalle : detalles) {
+        for (DetalleProyecto detalle : proyectoConDetalleDTO.getListaDeDetalles()) {
             detalle.setProyecto(result);
             detalleProyectoRepository.save(detalle);
         }
+
+        String userEmail = SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin).get().getEmail();
+
+        mailService.sendEmail(userEmail, "Tu proyecto fue creado!", "Esta es una notificación automatica, tu proyecto fue creado satisfactoriamente con el indicador " + String.valueOf(result.getId()),
+            false, false);
 
         return ResponseEntity.created(new URI("/api/proyectos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))

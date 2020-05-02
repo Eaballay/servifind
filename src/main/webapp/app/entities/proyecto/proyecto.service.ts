@@ -27,10 +27,9 @@ export class ProyectoService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  createWithDetalle(proyecto: IProyecto, listaDeDetalles: IDetalleProyecto[]): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(proyecto);
+  createWithDetalle(descripcion: string, listaDeDetalles: IDetalleProyecto[]): Observable<EntityResponseType> {
     return this.http
-      .post<IProyecto>(this.resourceUrl + '/conDetalle', [copy, listaDeDetalles], { observe: 'response' })
+      .post<IProyecto>(this.resourceUrl + '/conDetalle', { descripcion, listaDeDetalles }, { observe: 'response' })
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
