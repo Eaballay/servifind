@@ -84,12 +84,19 @@ public class ProyectoResource {
         proyecto.setDireccion("");
         proyecto.setNroDeProyecto((long) Math.random());
 
-        Proyecto result = proyectoRepository.save(proyecto);
-
+        StringBuilder descripcion = new StringBuilder();
         for (DetalleProyecto detalle : proyectoConDetalleDTO.getListaDeDetalles()) {
-            detalle.setProyecto(result);
-            detalleProyectoRepository.save(detalle);
+            descripcion.append(detalle.getRubro())
+                .append(" -> ")
+                .append(detalle.getDimension())
+                .append(" -> ")
+                .append(detalle.getTipoDeTarea())
+                .append("\n");
         }
+
+        descripcion.append(proyectoConDetalleDTO.getDescripcion());
+        proyecto.setDescripcion(descripcion.toString());
+        Proyecto result = proyectoRepository.save(proyecto);
 
         String userEmail = SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin).get().getEmail();
 

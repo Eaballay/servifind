@@ -45,6 +45,7 @@ export class JhiMainComponent implements OnInit {
   showActividades = false;
   showTareas = false;
   showFinal = false;
+  showMensaje = false;
 
   proyecto: IProyecto;
   rubroSelecionado: IDominio;
@@ -183,6 +184,12 @@ export class JhiMainComponent implements OnInit {
       )
       .subscribe(
         (res: IDominio[]) => {
+          if (this.listaDeDetalles) {
+            for (let i = 0; i < this.listaDeDetalles.length; i++) {
+              const tareaS = this.listaDeDetalles[i].tipoDeTarea;
+              res = res.filter(e => e.id !== tareaS.id);
+            }
+          }
           this.tareasS = res;
           this.showTareas = true;
           this.loadingRubros = false;
@@ -274,7 +281,8 @@ export class JhiMainComponent implements OnInit {
 
     this.proyectoService.createWithDetalle(this.proyecto.descripcion, this.listaDeDetalles).subscribe(
       res => {
-        console.log(res);
+        this.showMensaje = true;
+        this.showFinal = false;
       },
       err => {
         console.log(JSON.stringify(err));
@@ -287,6 +295,7 @@ export class JhiMainComponent implements OnInit {
     this.actividadSeleccionada = null;
     this.tareaSeleccionada = null;
     this.listaDeDetalles = null;
+    this.showMensaje = false;
 
     this.showRubros = false;
     this.creandoSolicitud = false;

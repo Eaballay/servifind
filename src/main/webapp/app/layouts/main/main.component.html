@@ -188,6 +188,17 @@
 
                 </div>
 
+
+                <div class="text-center" *ngIf="showMensaje && !loadingRubros">
+
+                    <div class="alert alert-success" role="alert">
+                        La solicitud de proyecto fue creada satisfactoriamente!
+                    </div>
+
+                    <button class="btn btn-lg btn-success mt-3 rounded" (click)="cancelar()">Inicio</button>
+
+                </div>
+
             </div>
         </div>
     </div>
